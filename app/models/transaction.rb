@@ -16,6 +16,7 @@ class AccountFormatValidator < ActiveModel::Validator
   # Could've also used splits
   def validate(record)
     # Validate if IBAN of bank_account is correct
+   if record.bank_account.length  == 22 && record.contra_account.length  == 22
     i = 0
     while i<21
       if (i==2 || i==3) || i>=8
@@ -43,6 +44,8 @@ class AccountFormatValidator < ActiveModel::Validator
       end
       i+=1 
     end 
+   end
+    
     # Validate if currency is USD/EUR or €/$
     currency_Valid = false
     case record.currency 
@@ -56,6 +59,16 @@ class AccountFormatValidator < ActiveModel::Validator
     # Validate if date is today or future
     if  Date.today>record.transaction_date
         record.errors.add :transaction_date, ': The transaction date should be today or in the future'
+    end
+    # Validate if funding type is either DEBIT or CREDIT
+    funding_Type_Valid = false
+    case record.funding_type 
+    when "DEBIT", "CREDIT"
+        funding_Type_Valid = true
+        
+    end
+    if !funding_Type_Valid
+        record.errors.add :funding_type, ': Provide a valid funding type! Either DEBIT or CREDIT'
     end
   end
 end
