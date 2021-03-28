@@ -1,41 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Transactions</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Transaction date</th>
-      <th>Bank account</th>
-      <th>Contra account</th>
-      <th>Contra account owner</th>
-      <th>Amount</th>
-      <th>Currency</th>
-      <th>Funding type</th>
-      <th>Desc</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @transactions.each do |transaction| %>
+<div class="transaction_history">
+  <p id="notice"><%= notice %></p>
+  <h1>Transactions</h1>
+  <table>
+    <thead>
       <tr>
-        <td><%= transaction.transaction_date %></td>
-        <td><%= transaction.bank_account %></td>
-        <td><%= transaction.contra_account %></td>
-        <td><%= transaction.contra_account_owner %></td>
-        <td><%= transaction.amount %></td>
-        <td><%= transaction.currency %></td>
-        <td><%= transaction.funding_type %></td>
-        <td><%= transaction.desc %></td>
-        <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th class="wide">Transaction date</th>
+        <th>Bank account</th>
+        <th>Contra account</th>
+        <th class="wide">Contra account owner</th>
+        <th>Amount</th>
+        <th>Currency</th>
+        <th class="wide">Funding type</th>
+        <th>Desc</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Transaction', new_transaction_path %>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <td><%= transaction.transaction_date %></td>
+          <td><%= transaction.bank_account %></td>
+          <td><%= transaction.contra_account %></td>
+          <td><%= transaction.contra_account_owner %></td>
+          <td><%= transaction.amount %></td>
+          <td><%= transaction.currency %></td>
+          <td><%= transaction.funding_type %></td>
+          <td><%= transaction.desc %></td>
+          <td><%= link_to 'Show', transaction %></td>
+          <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+          <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'New Transaction', new_transaction_path%></div>
