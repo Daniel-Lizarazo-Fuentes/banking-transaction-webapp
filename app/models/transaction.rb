@@ -17,25 +17,42 @@ class AccountFormatValidator < ActiveModel::Validator
   def validate(record)
     
     i = 0
-    while i<22
-      if (i==2 || i==3) || i>=7
+    while i<21
+      if (i==2 || i==3) || i>=8
           if !numeric?(record.bank_account[i]);
-            record.errors.add :base, 'A valid IBAN has two numbers after the first two letters! IBAN format: two letters, two digits, four letters, 14 digits.'
+            record.errors.add :bank_account, ': A valid IBAN has two numbers after the first two letters! IBAN format: two letters, two digits, four letters, 14 digits.'
           end
       else 
           if !letter?(record.bank_account[i]);
-            record.errors.add :base, 'A valid IBAN starts with two letters! IBAN format: two letters, two digits, four letters, 14 digits. '
+            record.errors.add :bank_account, ': A valid IBAN starts with two letters! IBAN format: two letters, two digits, four letters, 14 digits. '
           end
       end
       i+=1 
     end 
+    i = 0
+    while i<21
+      if (i==2 || i==3) || i>=8
+          if !numeric?(record.contra_account[i]);
+            record.errors.add :contra_account, ': A valid IBAN has two numbers after the first two letters! IBAN format: two letters, two digits, four letters, 14 digits.'
+          end
+      else 
+          if !letter?(record.contra_account[i]);
+            record.errors.add :contra_account, ': A valid IBAN starts with two letters! IBAN format: two letters, two digits, four letters, 14 digits. '
+          end
+      end
+      i+=1 
+    end 
+
+
   end
 end
 
 def letter?(str)
-  str.match?(/[[:alpha:]]/)
+    true if str[/[a-zA-Z]+/]  == str rescue false 
 end
 
 def numeric?(str)
-  str.match?(/[[:digit:]]/)
+    true if Integer(str) rescue false
 end
+
+
