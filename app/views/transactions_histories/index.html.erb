@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Transactions Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Transaction date</th>
+      <th>Bank account</th>
+      <th>Contra account</th>
+      <th>Contra account owner</th>
+      <th>Amount</th>
+      <th>Currency</th>
+      <th>Funding type</th>
+      <th>Desc</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transactions_histories.each do |transactions_history| %>
+      <tr>
+        <td><%= transactions_history.transaction_date %></td>
+        <td><%= transactions_history.bank_account %></td>
+        <td><%= transactions_history.contra_account %></td>
+        <td><%= transactions_history.contra_account_owner %></td>
+        <td><%= transactions_history.amount %></td>
+        <td><%= transactions_history.currency %></td>
+        <td><%= transactions_history.funding_type %></td>
+        <td><%= transactions_history.desc %></td>
+        <td><%= link_to 'Show', transactions_history %></td>
+        <td><%= link_to 'Edit', edit_transactions_history_path(transactions_history) %></td>
+        <td><%= link_to 'Destroy', transactions_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Transactions History', new_transactions_history_path %>
