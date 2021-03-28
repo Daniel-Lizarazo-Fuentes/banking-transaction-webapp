@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_120100) do
+ActiveRecord::Schema.define(version: 2021_03_28_122625) do
 
-  create_table "transactions_histories", force: :cascade do |t|
+  create_table "transactions", force: :cascade do |t|
     t.date "transaction_date"
     t.string "bank_account"
     t.string "contra_account"
