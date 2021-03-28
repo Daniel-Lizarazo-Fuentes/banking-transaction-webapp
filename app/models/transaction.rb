@@ -53,7 +53,10 @@ class AccountFormatValidator < ActiveModel::Validator
     if !currency_Valid
         record.errors.add :currency, ': Provide a valid currency! Either EUR, USD'
     end
-    
+    # Validate if date is today or future
+    if  Date.today>record.transaction_date
+        record.errors.add :transaction_date, ': The transaction date should be today or in the future'
+    end
   end
 end
 
