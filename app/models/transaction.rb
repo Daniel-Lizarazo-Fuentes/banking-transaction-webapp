@@ -15,7 +15,7 @@ end
 class AccountFormatValidator < ActiveModel::Validator
   # Could've also used splits
   def validate(record)
-    
+    # Validate if IBAN of bank_account is correct
     i = 0
     while i<21
       if (i==2 || i==3) || i>=8
@@ -29,6 +29,7 @@ class AccountFormatValidator < ActiveModel::Validator
       end
       i+=1 
     end 
+    # Validate if IBAN of contra_account is correct
     i = 0
     while i<21
       if (i==2 || i==3) || i>=8
@@ -42,8 +43,17 @@ class AccountFormatValidator < ActiveModel::Validator
       end
       i+=1 
     end 
-
-
+    # Validate if currency is USD/EUR or €/$
+    currency_Valid = false
+    case record.currency 
+    when "USD", "EUR"
+        currency_Valid = true
+        
+    end
+    if !currency_Valid
+        record.errors.add :currency, ': Provide a valid currency! Either EUR, USD'
+    end
+    
   end
 end
 
