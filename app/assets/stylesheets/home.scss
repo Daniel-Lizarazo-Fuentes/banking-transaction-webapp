@@ -13,22 +13,24 @@ body {
 }
 
 .navbar {
-  background-color: hsl(210, 25%, 23%);
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+  background-color: white;
   display: flex;
   align-items: center;
-  @media screen and (max-width: 750px) {
-    justify-content: space-between;
-  }
+  box-shadow: 0 1px 0px 0 #e8e8e8;
 
   .nav_items {
-    @media screen and (max-width: 750px) {
-      display: none;
-    }
+    
     a {
+      background-color: hsl(33, 98%, 53%);
+      border-radius: 18px;
       text-decoration: none;
-      color: hsl(220, 20, 85);
+      color: white;
       font-size: 18px;
-      padding: 10px 20px;
+      font-weight: bold;
+      padding: 12px 24px;
       margin: 0 10px;
     }
     a:hover {
